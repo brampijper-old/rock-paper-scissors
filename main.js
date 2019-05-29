@@ -1,8 +1,9 @@
+
 let playerScore = 0;
 let computerScore = 0;
 let round = 0;
 
-const startGame = startNewRound()
+startNewRound()
 
 function startNewRound() {
     console.log(game(computerPlay()))
@@ -11,16 +12,16 @@ function startNewRound() {
 }
 
 function computerPlay() {
-    let randomInteger = Math.random() * (3 - 0) + 0;
-    console.log(randomInteger)
-    if(randomInteger < 1) {
+    let randomInteger = Math.floor( Math.random() * (4 - 1) + 1);
+    // console.log(randomInteger)
+    if (randomInteger == 1) {
         return 'rock'
     }
-    else if(randomInteger < 2 && randomInteger > 1) {
-        return 'paper'
-    }
-    else if(randomInteger > 2) {
+    else if (randomInteger == 2) {
         return 'scissors'
+    }
+    else if (randomInteger == 3) {
+        return 'paper'
     }
 }
 
@@ -30,6 +31,7 @@ function game(computerSelection) {
     if(playerSelection == "rock" && computerSelection == "rock") {
         return "Draw, try again!"
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
+        playerScore ++;
         return "You Win! Rock beats Scissors"
     } else if (playerSelection == "rock" && computerSelection == "paper") {
         computerScore ++;
@@ -37,9 +39,9 @@ function game(computerSelection) {
     }
 
     if(playerSelection == "scissors" && computerSelection == "rock") {
+        computerScore ++;
         return "You Lose!, Rock beats Scissors!"
     } else if (playerSelection == "scissors" && computerSelection == "scissors") {
-        computerScore ++;
         return "Draw, try again!"
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
         playerScore ++;
