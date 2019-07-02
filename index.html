@@ -3,15 +3,33 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        
         <h1> ROCK PAPER AND SCISSORS! </h1> 
-        <div id="container">
-            <h1 id='resultOfOneRound'></h1>
-            <h1 id='cScore'> </h1>
-            <h1 id='pScore'> </h1> 
+        <div class="main-container">
+            <div class="left-container">
+                <p > Player </p>
+                <h1 id='pScore'> 0 </h1> 
+            </div> 
+
+            <div class="center-container"> 
+                    <!-- <button id='reset-game-btn'>Reset game</button> -->
+                    <!-- <h5>Rounds: </h5> -->
+                <div id="text-container">
+                    <h1 id='resultOfOneRound'></h1>
+                    
+                    <div class="button-holder">
+                        <button class='btn' id="btn-rock" value='rock'>Rock</button>
+                        <button class='btn' id="btn-paper" value='paper'>Paper</button>
+                        <button class='btn' id="btn-scissors" value='scissors'>Scissors</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <p> Computer</p>
+                <h1 id='cScore'> 0 </h1>
+            </div>
         </div>
-        <button id='btn1' value='rock'>Rock</button>
-        <button id='btn2' value='paper'>Paper</button>
-        <button id='btn3' value='scissors'>Scissors</button>
     </body>
     <script type="text/javascript" src="./main.js"></script>
 </html>
