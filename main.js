@@ -1,43 +1,77 @@
-
 let playerScore = 0;
 let computerScore = 0;
 let maximumScore = 5;
+let pickChoiceAllowed = true;
 
 let pScore = document.getElementById('pScore');
 let cScore = document.getElementById('cScore');
 
-pScore.textContent = "Player points: " + playerScore;
-cScore.textContent = "Computer Points: " + computerScore;
+pScore.textContent =+ playerScore;
+cScore.textContent =+ computerScore;
 
 let resultOfOneRound = document.getElementById('resultOfOneRound');
+let container = document.querySelector('#text-container');
 
 resultOfOneRound.textContent = "Start Playing!";
 
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener('click', startRound)
+    if(button.className == 'btn') button.addEventListener('click', startRound)
+    // if(button.id == 'reset-game-btn') button.addEventListener('click', resetGame)
 });
+
+// function resetGame() {
+//     pickChoiceAllowed = true;
+//     playerScore = 0;
+//     computerScore = 0;
+//     resultOfOneRound.textContent = "New Game!";
+//     document.body.style.backgroundColor = "#ebc714";
+//     container.style.backgroundColor = "#D3D3D3";
+//     pScore.textContent =+ playerScore;
+//     cScore.textContent =+ computerScore;
+// }
+
+function newRound() {
+    pickChoiceAllowed = false; 
+
+    setTimeout(function(){
+        pickChoiceAllowed = true;
+        playerScore = 0;
+        computerScore = 0;
+        resultOfOneRound.textContent = "Next round";
+        document.body.style.backgroundColor = "#ebc714";
+        container.style.backgroundColor = "#D3D3D3";
+        pScore.textContent =+ playerScore;
+        cScore.textContent =+ computerScore;
+    }, 5000 )
+}
 
 function startRound(e) {
 
-    pScore.textContent = "Player points: " + playerScore;
-    cScore.textContent = "Computer Points: " + computerScore;
+    pScore.textContent =+ playerScore;
+    cScore.textContent =+ computerScore;
 
-    if(playerScore == 5 && computerScore < 5) {
-        resultOfOneRound.textContent = "You have won!";
-        document.body.style.backgroundColor = "#66ff00";
-        container.style.backgroundColor = "#D3D3D3";
-    } else if (computerScore == 5 && playerScore < 5) {
-        resultOfOneRound.textContent = "AI has won!";
-        container.style.backgroundColor = "#D3D3D3";
-        document.body.style.backgroundColor = "#EB3637";
-    } else if (computerScore == 5 & playerScore == 5) {
-        resultOfOneRound.textContent = "it's a draw!";
-        container.style.backgroundColor = "#D3D3D3";
-        document.body.style.backgroundColor = "#ebc714";
-    } else if (computerScore < 5 && playerScore < 5) {
-        game(computerPlay(), e.target.value)
+    if(pickChoiceAllowed) {
+    
+        if(playerScore == 5 && computerScore < 5) {
+            resultOfOneRound.textContent = "You have won!";
+            document.body.style.backgroundColor = "#66ff00";
+            container.style.backgroundColor = "#D3D3D3";
+            newRound()
+        } else if (computerScore == 5 && playerScore < 5) {
+            resultOfOneRound.textContent = "AI has won!";
+            container.style.backgroundColor = "#D3D3D3";
+            document.body.style.backgroundColor = "#EB3637";
+            newRound()
+        } else if (computerScore == 5 & playerScore == 5) {
+            resultOfOneRound.textContent = "it's a draw!";
+            container.style.backgroundColor = "#D3D3D3";
+            document.body.style.backgroundColor = "#ebc714";
+            newRound()
+        } else if (computerScore < 5 && playerScore < 5) {
+            game(computerPlay(), e.target.value)
+        }
     }
 }
 
@@ -85,7 +119,7 @@ function game(computerSelection, playerSelection) {
 
     if(playerSelection == "paper" && computerSelection == "rock") {
         playerScore ++;
-        resultOfOneRound.textContent = "You Win!, Paper beats Rock!"
+        resultOfOneRound.textContent = "You Win! Paper beats Rock!"
         container.style.backgroundColor = "green";
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
         computerScore ++;
